@@ -2,19 +2,10 @@
 import { useEffect, useState } from "react";
 import { RadioGroup } from "@headlessui/react";
 
-const OPTIONS = [
-  {
-    name: "Line",
-    value: "line",
-  },
-  {
-    name: "Bar",
-    value: "bar",
-  },
-];
 
-export default function Toggle({ onChange }) {
-  const [selected, setSelected] = useState(OPTIONS[0]);
+
+export default function Toggle({options, onChange }) {
+  const [selected, setSelected] = useState(options?.[0]);
 
   useEffect(() => {
     if (onChange) {
@@ -29,7 +20,7 @@ export default function Toggle({ onChange }) {
   return (
     <RadioGroup value={selected} onChange={handleChange}>
       <div className="flex">
-        {OPTIONS.map((option) => (
+        {options?.map((option) => (
           <RadioGroup.Option
             key={option.name}
             value={option}

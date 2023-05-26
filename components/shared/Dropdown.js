@@ -3,26 +3,9 @@ import { Menu, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
-const OPTIONS = [
-  {
-    name: "Open",
-    value: "Open",
-  },
-  {
-    name: "Close",
-    value: "Close",
-  },
-  {
-    name: "Low",
-    value: "Low",
-  },
-  {
-    name: "High",
-    value: "High",
-  },
-];
-export default function Dropdown({ onChange }) {
-  const [selected, setSelected] = useState(OPTIONS[0]);
+
+export default function Dropdown({ options, onChange }) {
+  const [selected, setSelected] = useState(options[0]);
 
   useEffect(() => {
     if (onChange) {
@@ -54,8 +37,7 @@ export default function Dropdown({ onChange }) {
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items className="absolute right-0 mt-2 w-40 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="px-1 py-1 ">
-            {OPTIONS.map((option) => (
+            {options.map((option) => (
               <Menu.Item
                 key={option.value}
                 onClick={() => onClickHandler(option)}
@@ -71,7 +53,6 @@ export default function Dropdown({ onChange }) {
                 )}
               </Menu.Item>
             ))}
-          </div>
         </Menu.Items>
       </Transition>
     </Menu>
